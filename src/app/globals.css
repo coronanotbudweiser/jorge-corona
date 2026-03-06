@@ -1,26 +1,202 @@
 @import "tailwindcss";
 
+/* ─── Brand Tokens ─── */
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0a0a0a;
 }
 
 @theme inline {
+  /* Brand Green */
+  --color-brand-green-50: #f4f8ec;
+  --color-brand-green-100: #e5efd5;
+  --color-brand-green-200: #cce0af;
+  --color-brand-green-300: #a9c97e;
+  --color-brand-green-400: #8bb555;
+  --color-brand-green-500: #5b8628;
+  --color-brand-green-600: #4d7122;
+  --color-brand-green-700: #3d5a1b;
+  --color-brand-green-800: #2e4315;
+  --color-brand-green-900: #1f2d0e;
+  --color-brand-green-950: #111a08;
+
+  /* CTA Red */
+  --color-cta-red-50: #fef2f2;
+  --color-cta-red-100: #fee2e2;
+  --color-cta-red-200: #fdb5b5;
+  --color-cta-red-300: #f87171;
+  --color-cta-red-400: #ef4444;
+  --color-cta-red-500: #e81e23;
+  --color-cta-red-600: #c81a1e;
+  --color-cta-red-700: #a81519;
+  --color-cta-red-800: #7f1014;
+  --color-cta-red-900: #560b0e;
+  --color-cta-red-950: #370709;
+
+  /* Accent Yellow */
+  --color-accent-yellow-50: #fffef5;
+  --color-accent-yellow-100: #fffde6;
+  --color-accent-yellow-200: #fff9b3;
+  --color-accent-yellow-300: #fff680;
+  --color-accent-yellow-400: #fff245;
+  --color-accent-yellow-500: #ffe600;
+  --color-accent-yellow-600: #ccb800;
+  --color-accent-yellow-700: #998a00;
+  --color-accent-yellow-800: #665c00;
+  --color-accent-yellow-900: #332e00;
+
+  /* Dark */
+  --color-dark: #0a0a0a;
+  --color-dark-light: #141414;
+  --color-dark-lighter: #1e1e1e;
+
+  /* Semantic */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /* Fonts */
+  --font-heading: var(--font-playfair), Georgia, serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+
+  /* Typography Scale */
+  --text-display: clamp(3rem, 8vw, 7rem);
+  --text-h1: clamp(2.5rem, 5vw, 4.5rem);
+  --text-h2: clamp(1.75rem, 3vw, 3rem);
+  --text-h3: clamp(1.25rem, 2vw, 1.75rem);
+
+  /* Animations */
+  --animate-fade-in: fadeIn 0.5s ease-out;
+  --animate-slide-up: slideUp 0.6s ease-out;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Base ─── */
 
 body {
-  background: var(--background);
+  font-family: var(--font-body);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+::selection {
+  background-color: var(--color-accent-yellow-400);
+  color: var(--color-dark);
+}
+
+/* ─── Utilities ─── */
+
+@utility container-page {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@utility section-padding {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@utility text-display {
+  font-family: var(--font-heading);
+  font-size: var(--text-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+}
+
+@utility text-h1 {
+  font-family: var(--font-heading);
+  font-size: var(--text-h1);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+@utility text-h2 {
+  font-family: var(--font-heading);
+  font-size: var(--text-h2);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+@utility text-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@utility highlight-yellow {
+  background-image: linear-gradient(
+    to right,
+    var(--color-accent-yellow-400) 0%,
+    var(--color-accent-yellow-400) 100%
+  );
+  background-position: 0 85%;
+  background-size: 100% 30%;
+  background-repeat: no-repeat;
+  padding-left: 0.125rem;
+  padding-right: 0.125rem;
+}
+
+@utility bg-grain {
+  position: relative;
+}
+
+@utility illustration-slot {
+  border: 2px dashed var(--color-brand-green-300);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brand-green-400);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Grain texture pseudo-element — apply bg-grain to parent */
+.bg-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Responsive container-page at breakpoints */
+@media (min-width: 640px) {
+  .container-page { padding-left: 1.5rem; padding-right: 1.5rem; }
+}
+@media (min-width: 1024px) {
+  .container-page { padding-left: 2rem; padding-right: 2rem; }
+}
+
+/* Responsive section-padding */
+@media (min-width: 640px) {
+  .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
+}
+@media (min-width: 1024px) {
+  .section-padding { padding-top: 7rem; padding-bottom: 7rem; }
 }
