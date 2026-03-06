@@ -1,6 +1,6 @@
-import { Mail, Phone, MapPin } from "lucide-react";
+import Image from "next/image";
+import { Mail, Phone, MapPin, Instagram, Linkedin, Twitter } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Instagram, Linkedin, Twitter } from "lucide-react";
 
 const contactDetails = [
   { icon: Mail, label: "Email", value: "hello@anaroc.com" },
@@ -22,9 +22,18 @@ export default function ContactPage() {
           <h1 className="text-display mb-6">
             Let&apos;s Make Something<span className="text-accent-yellow-400">.</span>
           </h1>
-          <p className="text-lg text-slate-500 max-w-xl mb-16">
-            We don&apos;t bite. We just make really good content.
-          </p>
+          <div className="flex items-center gap-6 mb-16">
+            <p className="text-lg text-slate-500 max-w-xl">
+              We don&apos;t bite. We just make really good content.
+            </p>
+            <Image
+              src="/images/home/welcome.jpg"
+              alt="Welcome!"
+              width={120}
+              height={124}
+              className="hidden sm:block rounded-lg"
+            />
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact details */}

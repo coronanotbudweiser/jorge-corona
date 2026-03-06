@@ -1,11 +1,13 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-interface PortfolioItem {
+export interface PortfolioItem {
   id: string;
   title: string;
   client: string;
   platform: string;
   color: string;
+  image?: string;
 }
 
 interface PortfolioGridProps {
@@ -33,8 +35,17 @@ export function PortfolioGrid({ items, className }: PortfolioGridProps) {
                 : "aspect-square"
             )}
           >
-            {/* Placeholder colored div — replace with Sanity image */}
-            <div className={cn("absolute inset-0", item.color)} />
+            {item.image ? (
+              <Image
+                src={item.image}
+                alt={`${item.client} — ${item.title}`}
+                fill
+                className="object-cover"
+                sizes={isLarge ? "(max-width: 640px) 100vw, 66vw" : "(max-width: 640px) 100vw, 33vw"}
+              />
+            ) : (
+              <div className={cn("absolute inset-0", item.color)} />
+            )}
 
             {/* Hover overlay */}
             <div className="absolute inset-0 bg-dark/0 group-hover:bg-dark/80 transition-all duration-300 flex items-end p-6">

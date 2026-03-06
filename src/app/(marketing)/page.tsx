@@ -1,7 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Hero } from "@/components/marketing/hero";
 import { SectionHeading } from "@/components/marketing/section-heading";
 import { PortfolioGrid } from "@/components/marketing/portfolio-grid";
+import { VideoEmbed } from "@/components/marketing/video-embed";
 import { Button } from "@/components/ui/button";
 import { Lightbulb, Camera, BarChart3 } from "lucide-react";
 
@@ -29,45 +31,51 @@ const services = [
 const featuredWork = [
   {
     id: "1",
-    title: "Brand Launch Campaign",
-    client: "Greenpoint Bakery",
-    platform: "Instagram",
+    title: "Forbidden Fruit — Narrative Short",
+    client: "Film",
+    platform: "Vimeo",
     color: "bg-brand-green-300",
+    image: "/images/portfolio/vimeo-forbidden-fruit.jpg",
   },
   {
     id: "2",
-    title: "TikTok Growth Strategy",
-    client: "Midtown Fitness Co",
-    platform: "TikTok",
+    title: "The Animated History of the Hamburger",
+    client: "Documentary",
+    platform: "YouTube",
     color: "bg-brand-green-600",
+    image: "/images/portfolio/yt-hamburger.jpg",
   },
   {
     id: "3",
-    title: "Social Media Overhaul",
-    client: "BK Vintage",
-    platform: "Instagram",
+    title: "Collective Dance Academy",
+    client: "Photography",
+    platform: "Art",
     color: "bg-brand-green-800",
+    image: "/images/portfolio/dance-academy.jpg",
   },
   {
     id: "4",
-    title: "Video Production",
-    client: "East River Eats",
+    title: "Why NYU? — Brand Film",
+    client: "New York University",
     platform: "YouTube",
     color: "bg-brand-green-400",
+    image: "/images/portfolio/yt-nyu.jpg",
   },
   {
     id: "5",
-    title: "LinkedIn Thought Leadership",
-    client: "Harlem Legal Group",
-    platform: "LinkedIn",
+    title: "Corporate Events",
+    client: "Business Photography",
+    platform: "Photography",
     color: "bg-brand-green-700",
+    image: "/images/portfolio/corporate-event.jpg",
   },
   {
     id: "6",
-    title: "Reels + Stories Package",
-    client: "SoHo Skincare",
-    platform: "Instagram",
+    title: "Que Taco! Menu Photography",
+    client: "Food Photography",
+    platform: "Photography",
     color: "bg-brand-green-500",
+    image: "/images/portfolio/que-taco.jpg",
   },
 ];
 
@@ -81,6 +89,8 @@ export default function HomePage() {
         ctaText="Start a Project"
         ctaHref="/contact"
         secondaryCta={{ text: "See the Work", href: "/portfolio" }}
+        image="/images/about/jorge-illustrated.jpg"
+        imageAlt="Jorge Corona — illustrated portrait"
       />
 
       {/* ── 2. Services ── */}
@@ -115,7 +125,19 @@ export default function HomePage() {
 
           <PortfolioGrid items={featuredWork} />
 
-          {/* ILLUSTRATION: hand-drawn frame or doodle border around featured item */}
+          {/* Video showcase */}
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <VideoEmbed
+              type="vimeo"
+              id="81630828"
+              title="Forbidden Fruit — Short Film"
+            />
+            <VideoEmbed
+              type="youtube"
+              id="HIjX8OPuf-w"
+              title="The Animated History of the Hamburger"
+            />
+          </div>
 
           <div className="mt-10 text-center">
             <Link
@@ -162,7 +184,6 @@ export default function HomePage() {
                   We make every one count.
                 </span>
               </p>
-              {/* ILLUSTRATION: hand-drawn underlines or squiggles on key phrases */}
             </div>
             <div>
               <p className="text-5xl font-heading font-black text-brand-green-400 mb-3">
@@ -179,9 +200,8 @@ export default function HomePage() {
       </section>
 
       {/* ── 5. CTA Banner ── */}
-      <section className="bg-brand-green-500 text-white section-padding">
-        <div className="container-page text-center">
-          {/* ILLUSTRATION: hand-drawn starburst or decorative element */}
+      <section className="bg-brand-green-500 text-white section-padding relative overflow-hidden">
+        <div className="container-page text-center relative z-10">
           <h2 className="text-h1 text-white mb-6">
             Ready to stop blending in?
           </h2>
@@ -195,6 +215,14 @@ export default function HomePage() {
             </Button>
           </Link>
         </div>
+        {/* Decorative background image */}
+        <Image
+          src="/images/home/header-film.jpg"
+          alt=""
+          fill
+          className="object-cover opacity-10"
+          aria-hidden="true"
+        />
       </section>
     </>
   );
